@@ -4,7 +4,7 @@ import React, { useState } from 'react';
 import { StyleSheet, Text, View, ImageBackground, TextInput } from 'react-native';
 
 
-function RegisterPage(props) {
+function RegisterPage() {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
 
@@ -22,8 +22,8 @@ function RegisterPage(props) {
 }
 const styles = StyleSheet.create({
     container: {
+        width:200,
         flex: 1,
-        alignItems: 'center',
         justifyContent: 'center',
         resizeMode: 'cover'
     },
