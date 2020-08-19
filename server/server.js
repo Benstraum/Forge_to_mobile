@@ -31,7 +31,7 @@ app.use(express.static('build'));
 
 // App Set //
 //set to run at expo server location
-const PORT =19006 || 5000;
+const PORT = process.env.PORT || 5000;
 
 /** Listen * */
 app.listen(PORT, () => {

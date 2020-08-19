@@ -1,17 +1,12 @@
 {
   "main": "index.js",
-  "proxy": {
-    "/*": {
-      "target": "http://localhost:5000/"
-    }
-  },
+  "proxy": "http://localhost:5000",
   "scripts": {
     "server": "nodemon --watch server server/server.js",
     "android": "react-native run-android",
     "ios": "react-native run-ios",
     "web": "expo start --web",
     "start": "react-native start",
-    "client": "react-scripts start",
     "test": "jest"
   },
   "dependencies": {
@@ -29,6 +24,8 @@
     "expo-status-bar": "^1.0.0",
     "expo-updates": "~0.2.10",
     "express": "^4.17.1",
+    "http-proxy-middleware": "^1.0.5",
+    "isomorphic-fetch": "^2.2.1",
     "passport": "^0.4.1",
     "passport-local": "^1.0.0",
     "pg": "^8.3.2",

@@ -11,11 +11,17 @@ function* loginUser(action) {
       headers: { 'Content-Type': 'application/json' },
       withCredentials: true,
     };
-    const instance = axios.create({baseURL: 'http://localhost:5000'})
     // send the action.payload as the body
     // the config includes credentials which
     // allow the server session to recognize the user
-    yield axios.post('/api/user/login', action.payload, config);
+    yield fetch('/api/user/login', {
+      method: 'post',
+      body: JSON.stringify(action.payload), 
+      headers: { 'Content-Type': 'application/json' },
+      withCredentials: true,
+    }) 
+    
+    //axios.post('/api/user/login', action.payload, config);
     
     // after the user has logged in
     // get the user information from the server

@@ -23,9 +23,9 @@ class Home extends Component {
         return(
             <View>
                         {this.props.characters.length ?
-                         this.props.characters.map(char => (<HomeMapItem key={char.id} char={char} sendToSheet={this.sendToSheet} />))
+                         this.props.characters.map(char => (<HomeMapItem style={{width:'100%', height:'30%'}} key={char.id} char={char} sendToSheet={this.sendToSheet} />))
                         :
-                        <Text style={{ textAlign: 'center', marginTop: '30vh' }}>Your Characters will go here!</Text>
+                        <Text style={{ textAlign: 'center', marginTop: '30%' }}>Your Characters will go here!</Text>
                         }
                 <Button
                 title="Create New Character!"
