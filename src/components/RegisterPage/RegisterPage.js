@@ -1,36 +1,75 @@
 import { connect } from 'react-redux';
-import React, { useState } from 'react';
+import React, { Component } from 'react';
+import { StyleSheet, Text, View, ImageBackground, TextInput, Button } from 'react-native';
 
-import { StyleSheet, Text, View, ImageBackground, TextInput } from 'react-native';
 
+import * as RootNavigation from '../RootNavigation.js';
 
-function RegisterPage() {
-    const [username, setUsername] = useState('');
-    const [password, setPassword] = useState('');
+import styles from '../styles.js'
 
+class RegisterPage extends Component {
+    // const [username, setUsername] = useState('');
+    // const [password, setPassword] = useState('');
+    state={
+        username:'',
+        password:''
+    }
+     registerUser = () => {
+        if (this.state.username && this.state.password) {
+            this.props.dispatch({
+                type: 'REGISTER',
+                payload: {
+                    username: username,
+                    password: password,
+                },
+            });
+        } else {
+            this.props.dispatch({ type: 'REGISTRATION_INPUT_ERROR' });
+        }
+    } // end registerUser
+     switchToLogin = () => {
+        this.props.dispatch({ type: 'SET_TO_LOGIN_MODE' })
+        RootNavigation.navigate('Login')
+    }
+    handleInputChange = (inputName, inputValue) => {
+        this.setState(state => ({ 
+          ...state,
+          [inputName]: inputValue // <-- Put square brackets
+        }))
+      }
+    render(){
     return (
         <View style={styles.container}>
-            <Text>{username}</Text>
+            <Text>Register Your Account!</Text>
             <TextInput
-                style={styles.inputs}
+                type='text'
+                style={styles.register}
                 placeholder="Username"
-                onChangeText={username => setUsername(username)}
-                value={username}
+                placeholderTextColor="black"
+                onChangeText={value => this.handleInputChange('userName', value)}
             />
+            <TextInput
+                style={styles.register}
+                secureTextEntry={true}
+                placeholder="Password"
+                placeholderTextColor="black"
+                onChangeText={value => this.handleInputChange('placeName', value)}
+            />
+            <Button
+                color='grey'
+                title='Login'
+                onPress={() => this.switchToLogin() }
+            >
+                Login
+          </Button>
+            <Button
+                title='Register'
+                onPress={() => this.registerUser()}
+            >Register</Button>
         </View>
     );
 }
-const styles = StyleSheet.create({
-    container: {
-        width:200,
-        flex: 1,
-        justifyContent: 'center',
-        resizeMode: 'cover'
-    },
-    inputs: {
-    backgroundColor:'white'
-    }
-});
+}
 const mapStateToProps = state => ({
     errors: state.errors,
 });

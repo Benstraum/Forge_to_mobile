@@ -1,11 +1,11 @@
 
 const express = require('express');
 require('dotenv').config();
-
+const cors = require('cors');
 const app = express();
 const bodyParser = require('body-parser');
 const sessionMiddleware = require('./modules/session-middleware');
-
+app.use(cors());
 const passport = require('./strategies/user.strategy');
 
 // Route includes
@@ -30,7 +30,8 @@ app.use('/api/character', characterRouter);
 app.use(express.static('build'));
 
 // App Set //
-const PORT = process.env.PORT || 5000;
+//set to run at expo server location
+const PORT =19006 || 5000;
 
 /** Listen * */
 app.listen(PORT, () => {

@@ -1,13 +1,13 @@
 import { StatusBar } from 'expo-status-bar';
 import 'react-native-gesture-handler'
 import React, { Component } from 'react';
-
-import { StyleSheet, Text, View, ImageBackground, Button } from 'react-native';
-
+import { Text, View, ImageBackground, Button } from 'react-native';
 import { connect } from 'react-redux';
 
+import styles from '../styles.js'
+
 const AboutPage = ({ navigation }) => (
-    <View className="About">
+    <View style={styles.container}>
 
         <Text style={styles.text}>
             Welcome to Forge!
@@ -26,23 +26,4 @@ const AboutPage = ({ navigation }) => (
         />
     </View>
 );
-
-const styles = StyleSheet.create({
-    container: {
-      flex: 1,
-      alignItems: 'center',
-      justifyContent: 'center',
-      resizeMode: 'cover'
-    },
-    button: {
-      width: '150',
-      height: '50',
-      borderRadius: 4
-    },
-    text: {
-      fontSize: 12,
-      color: 'black'
-    }
-  });
-
 export default AboutPage;
