@@ -21,7 +21,7 @@ class Home extends Component {
         const Data = this.props.characters.map(char => char) 
         console.log(Data)
         return(
-            <View>
+            <View style={{height:'30vh'}}>
                         {this.props.characters.length ?
                          this.props.characters.map(char => (<HomeMapItem style={{width:'100%', height:'30%'}} key={char.id} char={char} sendToSheet={this.sendToSheet} />))
                         :

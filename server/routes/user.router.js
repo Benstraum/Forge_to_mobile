@@ -7,8 +7,9 @@ const userStrategy = require('../strategies/user.strategy');
 const router = express.Router();
 
 // Handles Ajax request for user information if user is authenticated
-router.get('/', rejectUnauthenticated, (req, res) => {
+router.get('/', (req, res) => {
   // Send back user object from the session (previously queried from the database)
+  console.log(req)
   res.send(req.user);
 });
 

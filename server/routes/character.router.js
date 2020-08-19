@@ -6,6 +6,7 @@ const router = express.Router();
  * GET route template
  */
 router.get('/', (req, res) => {
+    console.log(req.user.id)
     const queryText = `
     SELECT character.* FROM character
     JOIN "user"

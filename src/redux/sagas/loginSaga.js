@@ -14,18 +14,21 @@ function* loginUser(action) {
     // send the action.payload as the body
     // the config includes credentials which
     // allow the server session to recognize the user
-    yield fetch('/api/user/login', {
-      method: 'post',
-      body: JSON.stringify(action.payload), 
-      headers: { 'Content-Type': 'application/json' },
-      withCredentials: true,
-    }) 
+    const response = yield axios.post('http://localhost:5000/api/user/login', action.payload, config);
+     
+
+    //axios.post('http://localhost:5000/api/user/login', action.payload, config);
     
-    //axios.post('/api/user/login', action.payload, config);
-    
+    // fetch('http://localhost:5000/api/user/login', {
+    //   method: 'post',
+    //   body: JSON.stringify(action.payload), 
+    //   headers: { 'Content-Type': 'application/json' },
+    //   withCredentials: true,
+    // })
+    // console.log(response)
     // after the user has logged in
     // get the user information from the server
-    yield put({type: 'FETCH_USER'});
+    yield put({type: 'FETCH_USER'})
   } catch (error) {
     console.log('Error with user login:', error);
     if (error.response.status === 401) {
@@ -53,7 +56,7 @@ function* logoutUser(action) {
     // allow the server session to recognize the user
     // when the server recognizes the user session
     // it will end the session
-    yield axios.post('/api/user/logout', config);
+    yield axios.post('http://localhost:5000/api/user/logout', config);
 
     // now that the session has ended on the server
     // remove the client-side user object to let
